@@ -48,3 +48,21 @@ def choose_subject(subject_list):
                 print("Invalid choice. Try again.")
         except ValueError:
             print("Please enter a valid number.")
+
+def take_quiz():
+    """Handles the quiz-taking flow."""
+    available_subjects = list_available_subjects()
+    if not available_subjects:
+        print("⚠️ No quiz subjects found. Please create a quiz first.")
+        return
+
+    selected_subject = choose_subject(available_subjects)
+    loaded_questions = QuizLoader.load_questions(selected_subject)
+
+    if not loaded_questions:
+        print("⚠️ No valid questions found in this quiz.")
+        return
+
+    user_name = input("Enter your name: ").strip()
+    quiz_instance = Quiz(loaded_questions)
+    quiz_instance.start(user_name)
