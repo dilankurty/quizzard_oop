@@ -58,3 +58,22 @@ class QuizCreator:
                 break
             else:
                 print("Invalid answer. Must be one of A, B, C, or D.")
+
+        question_entry = {
+            "question": question_text,
+            "choices": choices,
+            "answer": correct_answer
+        }
+
+        if os.path.exists(self.filename):
+            with open(self.filename, "r") as file:
+                data = json.load(file)
+        else:
+            data = []
+
+        data.append(question_entry)
+
+        with open(self.filename, "w") as file:
+            json.dump(data, file, indent=4)
+
+        print("✅ Question added successfully.")
