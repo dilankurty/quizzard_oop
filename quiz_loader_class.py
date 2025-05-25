@@ -18,3 +18,22 @@ class QuizLoader:
         if not os.path.exists(filename):
             print(f"\nNo quiz file found for subject: {subject_name}")
             return []
+        
+        try:
+            with open(filename, "r", encoding="utf-8") as quiz_file:
+                data = json.load(quiz_file)
+
+                questions = []
+                for entry in data:
+                    # Basic validation
+                    if "question" in entry and "choices" in entry and "answer" in entry:
+                        question = Question(
+                            text=entry["question"],
+                            choices=entry["choices"],
+                            answer=entry["answer"]
+                        )
+                        questions.append(question)
+                    else:
+                        print("⚠️ Skipping invalid question format.")
+
+                return questions
