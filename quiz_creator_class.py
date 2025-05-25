@@ -51,3 +51,10 @@ class QuizCreator:
                     break
                 else:
                     print("Choice cannot be empty.")
+
+        while True:
+            correct_answer = input("Enter the correct answer (A/B/C/D): ").upper()
+            if correct_answer in choices:
+                break
+            else:
+                print("Invalid answer. Must be one of A, B, C, or D.")
