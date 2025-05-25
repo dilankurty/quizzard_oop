@@ -1,5 +1,5 @@
-from quiz_creator import QuizCreator
-from quiz_loader import QuizLoader
+from quiz_creator_class import QuizCreator
+from quiz_loader_class import QuizLoader
 from quiz_class import Quiz
 
 import os
@@ -66,3 +66,24 @@ def take_quiz():
     user_name = input("Enter your name: ").strip()
     quiz_instance = Quiz(loaded_questions)
     quiz_instance.start(user_name)
+
+def main():
+    """Main control loop for Quizzard."""
+    while True:
+        clear_terminal()
+        selected_option = show_main_menu()
+
+        if selected_option == "1":
+            take_quiz()
+        elif selected_option == "2":
+            quiz_creator = QuizCreator()
+            quiz_creator.create()
+        elif selected_option == "3":
+            print("👋 Goodbye! Thanks for using Quizard.")
+            break
+
+        input("\nPress Enter to return to the main menu...")
+
+
+if __name__ == "__main__":
+    main()
