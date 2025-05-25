@@ -32,10 +32,10 @@ class Quiz:
         self.review()
 
     def review(self):
-    print("\n📋 Review of Your Answers:")
-    for index, question in enumerate(self.questions, 1):
-        correct = question.user_answer == question.answer
-        status = "✅ Correct" if correct else f"❌ Incorrect (Correct: {question.answer})"
-        print(f"{index}. {question.text}")
-        print(f"   Your Answer: {question.user_answer} — {status}")
+        print("\n📋 Review of Your Answers:")
+        for index, question in enumerate(self.questions, 1):
+            correct = question.user_answer == question.answer
+            status = "✅ Correct" if correct else f"❌ Incorrect (Correct: {question.answer})"
+            print(f"{index}. {question.text}")
+            print(f"   Your Answer: {question.user_answer} — {status}")
 
