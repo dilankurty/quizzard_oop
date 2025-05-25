@@ -37,3 +37,10 @@ class QuizLoader:
                         print("⚠️ Skipping invalid question format.")
 
                 return questions
+
+        except json.JSONDecodeError:
+            print("❌ Error: The quiz file is not a valid JSON.")
+            return []
+        except Exception as error:
+            print(f"Unexpected error while loading quiz: {error}")
+            return []
