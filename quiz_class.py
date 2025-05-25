@@ -20,3 +20,14 @@ class Quiz:
                 else:
                     print("Invalid input. Please choose A, B, C, or D.")
 
+            
+            if question.is_correct(user_answer):
+                print("✅ Correct!")
+                self.score += 1
+            else:
+                print(f"❌ Wrong! The correct answer was: {question.answer}")
+
+        print(f"\nQuiz finished! Your score: {self.score}/{len(self.questions)}")
+
+        
+
