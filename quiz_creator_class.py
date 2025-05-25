@@ -85,4 +85,18 @@ class QuizCreator:
         while True:
             self.create_question()
 
-            
+            while True:
+                next_action = input("\nWhat would you like to do next?\n"
+                                    "[1] Add another question\n"
+                                    "[2] Select another subject\n"
+                                    "[3] Return to main menu\n"
+                                    "Enter choice: ")
+                if next_action == "1":
+                    break
+                elif next_action == "2":
+                    self.choose_subject()
+                    break
+                elif next_action == "3":
+                    return
+                else:
+                    print("Invalid input. Please select 1, 2, or 3.")
