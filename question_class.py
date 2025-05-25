@@ -1,8 +1,8 @@
 class Question:
-    def __init__(self, question_text, choices, answer):
-        self.question_text = question_text
+    def __init__(self, text, choices, answer):
+        self.text = text
         self.choices = choices
-        self.answer = answer.upper()
+        self.answer = answer
         self.user_answer = None
 
     def is_correct(self, user_choice):
