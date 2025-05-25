@@ -77,3 +77,12 @@ class QuizCreator:
             json.dump(data, file, indent=4)
 
         print("✅ Question added successfully.")
+
+    def create(self):
+        """Main entry point to handle the full creation flow."""
+        self.choose_subject()
+
+        while True:
+            self.create_question()
+
+            
