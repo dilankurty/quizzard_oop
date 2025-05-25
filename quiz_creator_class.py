@@ -35,3 +35,19 @@ class QuizCreator:
                 print("Please enter a valid number.")
 
         self.filename = f"{self.subject.lower()}_quiz.json"
+
+    def create_question(self):
+        """Ask the user for a new question and write it to the quiz file."""
+        print(f"\nCreating a question for {self.subject}")
+
+        question_text = input("Enter the question: ").strip()
+        choices = {}
+
+        for letter in ['A', 'B', 'C', 'D']:
+            while True:
+                choice = input(f"Enter choice {letter}: ").strip()
+                if choice:
+                    choices[letter] = choice
+                    break
+                else:
+                    print("Choice cannot be empty.")
