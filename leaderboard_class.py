@@ -14,3 +14,16 @@ class Leaderboard:
             "percentage": round(percentage, 2),
             "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
+
+        # Load existing leaderboard data
+        if os.path.exists(Leaderboard.file_path):
+            with open(Leaderboard.file_path, "r") as file:
+                data = json.load(file)
+        else:
+            data = []
+
+        data.append(entry)
+
+        # Save updated data
+        with open(Leaderboard.file_path, "w") as file:
+            json.dump(data, file, indent=4)
