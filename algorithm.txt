@@ -1,0 +1,31 @@
+1. Initialize the program
+    Show a welcome message.
+    Ask the user to choose:
+        Take a quiz.
+        Create a new quiz.
+        View leaderboard.
+
+2. If Taking a Quiz
+    Load available quiz files.
+    Let the user choose a subject.
+    Load quiz data using QuizLoader.
+    For each question in the quiz:
+        Display question text and options.
+        Get the user’s answer.
+        Check if the answer is correct.
+        Track the score.
+    At the end:
+        Show final score.
+        Update and save leaderboard.
+
+3. If Creating a Quiz
+    Prompt user to enter:
+        Quiz subject.
+        The question.
+    For each question:
+        Ask for question text, choices (if applicable), correct answer.
+        Save quiz data using QuizCreator.
+
+4. If Viewing Leaderboard
+    Load and display scores from leaderboard.json.
+
