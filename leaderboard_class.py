@@ -45,3 +45,9 @@ class Leaderboard:
             return
         
         sorted_data = sorted(data, key=lambda x: x["percentage"], reverse=True)
+
+        print("\n🏆 Leaderboard")
+        print(f"{'Rank':<6}{'Name':<20}{'Subject':<20}{'Score':<10}{'Percent':<10}{'Date'}")
+        print("-" * 75)
+        for rank, entry in enumerate(sorted_data[:10], start=1):
+            print(f"{rank:<6}{entry['name']:<20}{entry['subject']:<20}{entry['score']:<10}{entry['percentage']:<10}{entry['date']}")
