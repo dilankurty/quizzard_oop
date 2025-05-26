@@ -22,7 +22,7 @@ def show_main_menu():
         if choice in ["1", "2", "3", "4"]:
             return choice
         else:
-            print("Invalid input. Please enter 1, 2, or 3.")
+            print("Invalid input. Please enter 1, 2, 3, or 4.")
 
 def list_available_subjects():
     """Returns a list of quiz subjects based on available JSON files."""
@@ -66,7 +66,7 @@ def take_quiz():
         return
 
     user_name = input("Enter your name: ").strip()
-    quiz_instance = Quiz(loaded_questions)
+    quiz_instance = Quiz(loaded_questions, selected_subject)
     quiz_instance.start(user_name)
 
 def main():
@@ -76,12 +76,12 @@ def main():
         selected_option = show_main_menu()
 
         if selected_option == "1":
-            take_quiz()
-        elif selected_option == "2":
             quiz_creator = QuizCreator()
             quiz_creator.create()
+        elif selected_option == "2":
+            take_quiz()
         elif selected_option == "3":
-            Leaderboard.display_leaderboard()
+            Leaderboard.display()
         elif selected_option == "4":
             print("👋 Goodbye! Thanks for using Quizard.")
             break
