@@ -1,6 +1,9 @@
+from leaderboard import Leaderboard
+
 class Quiz:
-    def __init__(self, questions):
+    def __init__(self, questions, subject):
         self.questions = questions
+        self.subject = subject
         self.score = 0
 
     def start(self, user_name):
@@ -28,6 +31,14 @@ class Quiz:
                 print(f"❌ Wrong! The correct answer was: {question.answer}")
 
         print(f"\nQuiz finished! Your score: {self.score}/{len(self.questions)}")
+
+        Leaderboard.save_score(
+            subject_name=self.subject,
+            user_name=user_name,
+            score=score,
+            total=total_questions,
+            percentage=percentage
+        )
 
         self.review()
 
