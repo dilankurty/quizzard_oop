@@ -1,6 +1,7 @@
 from quiz_creator_class import QuizCreator
 from quiz_loader_class import QuizLoader
 from quiz_class import Quiz
+from leaderboard_class import Leaderboard
 
 import os
 
@@ -10,14 +11,15 @@ def clear_terminal():
 
 def show_main_menu():
     """Displays the main menu and returns the user's choice."""
-    print("\nWelcome to Quizzard!")
-    print("1. Take a Quiz")
-    print("2. Create a Quiz")
-    print("3. Exit")
+    print("📋 MENU:")
+    print("[1] Create a Quiz")
+    print("[2] Take a Quiz")
+    print("[3] View Leaderboard")
+    print("[4] Exit")
 
     while True:
         choice = input("Enter your choice (1-3): ").strip()
-        if choice in ["1", "2", "3"]:
+        if choice in ["1", "2", "3", "4"]:
             return choice
         else:
             print("Invalid input. Please enter 1, 2, or 3.")
@@ -79,6 +81,8 @@ def main():
             quiz_creator = QuizCreator()
             quiz_creator.create()
         elif selected_option == "3":
+            Leaderboard.display_leaderboard()
+        elif selected_option == "4":
             print("👋 Goodbye! Thanks for using Quizard.")
             break
 
