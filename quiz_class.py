@@ -30,7 +30,7 @@ class Quiz:
             else:
                 print(f"❌ Incorrect. The correct answer was {question.answer}\n")
 
-        self._show_results(user_name, total_questions)
+        self.show_results(user_name, total_questions)
 
         # Save to leaderboard
         Leaderboard.save_score(
@@ -41,7 +41,7 @@ class Quiz:
             percentage=(self.score / total_questions) * 100
         )
 
-    def _show_results(self, user_name, total_questions):
+    def show_results(self, user_name, total_questions):
         percentage = (self.score / total_questions) * 100
         print("──────────────────────────────")
         print(f"🎓 {user_name}, you scored {self.score}/{total_questions} ({percentage:.2f}%)")
