@@ -44,7 +44,7 @@ class Leaderboard:
             print("📉 No scores recorded for this subject yet.")
             return
         
-        sorted_data = sorted(data, key=lambda x: x["percentage"], reverse=True)
+        sorted_data = sorted(data, key=lambda entry: entry["percentage"], reverse=True)
 
         print("\n🏆 Leaderboard")
         print(f"{'Rank':<6}{'Name':<20}{'Subject':<20}{'Score':<10}{'Percent':<10}{'Date'}")
