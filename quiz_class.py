@@ -1,4 +1,5 @@
-from leaderboard import Leaderboard
+from leaderboard_class import Leaderboard
+import random
 
 class Quiz:
     def __init__(self, questions, subject):
@@ -7,46 +8,50 @@ class Quiz:
         self.score = 0
 
     def start(self, user_name):
-        import random
         random.shuffle(self.questions)
-        print(f"\nWelcome to Quizzard, {user_name}! Let's begin your quiz.")
+        total_questions = len(self.questions)
 
         for index, question in enumerate(self.questions, 1):
             print(f"\nQuestion {index}: {question.text}")
-            for option, value in question.choices.items():
-                print(f"{option}. {value}")
+            for choice_letter, choice_text in question.choices.items():
+                print(f"{choice_letter}. {choice_text}")
 
             while True:
-                user_answer = input("Your answer (A/B/C/D): ").strip().upper()
-                if user_answer in question.choices:
+                user_input = input("Your answer (A, B, C, D): ").strip().upper()
+                if user_input in question.choices:
+                    question.user_answer = user_input
                     break
                 else:
                     print("Invalid input. Please choose A, B, C, or D.")
 
-            
-            if question.is_correct(user_answer):
-                print("✅ Correct!")
+            if question.user_answer == question.answer:
+                print("✅ Correct!\n")
                 self.score += 1
             else:
-                print(f"❌ Wrong! The correct answer was: {question.answer}")
+                print(f"❌ Incorrect. The correct answer was {question.answer}\n")
 
-        print(f"\nQuiz finished! Your score: {self.score}/{len(self.questions)}")
+        self._show_results(user_name, total_questions)
 
+        # Save to leaderboard
         Leaderboard.save_score(
             subject_name=self.subject,
             user_name=user_name,
-            score=score,
+            score=self.score,
             total=total_questions,
-            percentage=percentage
+            percentage=(self.score / total_questions) * 100
         )
 
-        self.review()
-
-    def review(self):
-        print("\n📋 Review of Your Answers:")
-        for index, question in enumerate(self.questions, 1):
-            correct = question.user_answer == question.answer
-            status = "✅ Correct" if correct else f"❌ Incorrect (Correct: {question.answer})"
-            print(f"{index}. {question.text}")
-            print(f"   Your Answer: {question.user_answer} — {status}")
+    def _show_results(self, user_name, total_questions):
+        percentage = (self.score / total_questions) * 100
+        print("──────────────────────────────")
+        print(f"🎓 {user_name}, you scored {self.score}/{total_questions} ({percentage:.2f}%)")
+        if percentage >= 90:
+            print("🏆 Excellent work!")
+        elif percentage >= 70:
+            print("👏 Good job!")
+        elif percentage >= 50:
+            print("👍 Not bad, keep practicing!")
+        else:
+            print("📚 Keep learning! You'll do better next time.")
+        print("──────────────────────────────")
 
