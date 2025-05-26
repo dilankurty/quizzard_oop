@@ -9,8 +9,8 @@ class QuizCreator:
     def choose_subject(self):
         """Prompt user to choose a subject or create a new one."""
         print("\nChoose a subject for the quiz:")
-        existing_files = [f.replace('_quiz.json', '').capitalize() 
-                          for f in os.listdir() if f.endswith('_quiz.json')]
+        existing_files = [file.replace('_quiz.json', '').capitalize()
+                          for file in os.listdir() if file.endswith('_quiz.json')]
 
         if existing_files:
             for index, subject_name in enumerate(existing_files, 1):
