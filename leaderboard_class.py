@@ -27,3 +27,21 @@ class Leaderboard:
         # Save updated data
         with open(Leaderboard.file_path, "w") as file:
             json.dump(data, file, indent=4)
+
+    @staticmethod
+    def display(subject_filter=None):
+        if not os.path.exists(Leaderboard.file_path):
+            print("📉 No leaderboard data available.")
+            return
+
+        with open(Leaderboard.file_path, "r") as file:
+            data = json.load(file)
+
+        if subject_filter:
+            data = [entry for entry in data if entry["subject"].lower() == subject_filter.lower()]
+
+        if not data:
+            print("📉 No scores recorded for this subject yet.")
+            return
+        
+        sorted_data = sorted(data, key=lambda x: x["percentage"], reverse=True)
